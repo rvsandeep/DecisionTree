@@ -27,8 +27,12 @@ public class Discretizer {
 		return discreteVals;
 	}
 
-	/*
-	 * This is a static method that discretizes the values of a certain feature
+
+	/**
+	 *
+	 * @param samples
+	 * @param binSize
+	 * discretizes the values of a certain feature
 	 * of a collection of samples. After discretization, the values can be any
 	 * integer between 0 and binSize (inclusive) featureIndex specifies the
 	 * index of the feature in the featureList array of the samples collection
@@ -48,8 +52,12 @@ public class Discretizer {
 		}
 	}
 
-	/*
-	 * Computes delta = (xmax - xmin) / k
+	/**
+	 *
+	 * @param samples
+	 * @param featureIndex
+	 * @param binSize
+	 * @return Computes delta = (max(feature) - min(feature)) / binSize
 	 */
 	private double computeBinWidth(SampleCollection samples, int featureIndex,
 			int binSize) {
@@ -69,7 +77,7 @@ public class Discretizer {
 		return delta;
 	}
 
-	/*
+	/**
 	 * Using the "Equal Width Interval Binning" algorithm for discretization.
 	 * 
 	 * See the paper for more information -
@@ -89,7 +97,7 @@ public class Discretizer {
 		}
 	}
 
-	/*
+	/**
 	 * A public method to discretize the feature - featureName of sample based
 	 * on delta and min
 	 */

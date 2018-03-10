@@ -139,9 +139,13 @@ public class DecisionTree {
 				: SampleCollection.CLASS.NEGATIVECLASS;
 	}
 
+	/**
+	 *
+	 * @param featureList
+	 * @param samples
+	 * @return best feature to perform the next split based on the samples and available features
+	 */
 	private int getBestFeature(List<String> featureList, List<Sample> samples) {
-		if (samples.size() == 0)
-			System.out.println("there exist");
 		double maxInformationGain = Double.MIN_VALUE;
 		int maxGainIndex = 0;
 		for (int i = 0; i < featureList.size(); i++) {
@@ -157,6 +161,13 @@ public class DecisionTree {
 
 	}
 
+	/**
+	 *
+	 * @param featureList
+	 * @param decisionclass
+	 * @param samples
+	 * @return return the root of a decision tree computed with ID3 algorithm
+	 */
 	private DecisionTreeNode ID3(List<String> featureList,
 			Classification decisionclass, List<Sample> samples) {
 		DecisionTreeNode tempNode;
@@ -219,6 +230,13 @@ public class DecisionTree {
 		return getEntropy(pos, neg, samples.size());
 	}
 
+	/**
+	 *
+	 * @param pos
+	 * @param neg
+	 * @param size
+	 * @return Entropy of the split, computed using the positive and negative sample probability
+	 */
 	public double getEntropy(double pos, double neg, int size) {
 		double ppos, pneg, ent;
 		ppos = pos / size;
@@ -233,6 +251,12 @@ public class DecisionTree {
 		return Math.abs(ent);
 	}
 
+	/**
+	 *
+	 * @param samples
+	 * @param featureIndex
+	 * @return Information gain associated with the feature
+	 */
 	public double getInformationGain(List<Sample> samples, int featureIndex) {
 		double entropy = 0.0;
 		Set<Double> uniquevals = getUniqueVals(featureIndex, samples);
